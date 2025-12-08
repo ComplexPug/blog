@@ -39,6 +39,8 @@ jobs:
           pip install markdown
 
       - name: Build blog
+        env:
+          BASE_URL: "/${{ github.event.repository.name }}"
         run: python3 build.py
 
       - name: Setup Pages

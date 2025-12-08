@@ -26,7 +26,12 @@ except ImportError:
 SITE_TITLE = "哈皮狗's Blog"
 SITE_AUTHOR = "ComplexPug"
 SITE_DESCRIPTION = "记录daily和日常问题"
-BASE_URL = ""
+# 支持在GitHub Pages等子路径部署，优先读取环境变量BASE_URL，例如"/blog"
+BASE_URL = os.getenv("BASE_URL", "").strip()
+if BASE_URL:
+    if not BASE_URL.startswith("/"):
+        BASE_URL = "/" + BASE_URL
+    BASE_URL = BASE_URL.rstrip("/")
 
 # 目录配置
 CONTENT_DIR = Path("content")
